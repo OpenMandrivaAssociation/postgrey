@@ -19,6 +19,7 @@ Requires:	postfix
 # remove after bugs have been fixed (#25086)
 Requires:	perl(IO::Multiplex)
 Requires:	perl(BerkeleyDB)
+BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot/
 
 %define confdir 	/etc/postfix
 %define queue_directory %{_var}/spool/postfix
