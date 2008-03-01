@@ -1,11 +1,11 @@
 Summary: 	Postfix Greylisting Policy Server
 Name:		postgrey
-Version: 	1.27
-Release:	%mkrel 2
+Version: 	1.31
+Release:	%mkrel 1
 License: 	GPL
 Group: 		System/Servers
 URL:		http://isg.ee.ethz.ch/tools/postgrey/
-Source: 	http://isg.ee.ethz.ch/tools/postgrey/pub/%{name}-%{version}.tar.bz2
+Source: 	http://postgrey.schweikert.ch/pub/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
 Patch:		postgrey-mdk.patch
