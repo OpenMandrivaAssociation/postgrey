@@ -73,7 +73,7 @@ mkdir -p %{buildroot}%{_sysconfdir}/sysconfig
 cp -p %{SOURCE2} %{buildroot}%{_sysconfdir}/sysconfig/%{name}
 
 mkdir -p %{buildroot}%{queue_directory}/extern/%{name}
-mkdir -p %{buildroot}%{_localstatedir}/%{name}
+mkdir -p %{buildroot}%{_localstatedir}/lib/%{name}
 
 mkdir -p %{buildroot}%{_mandir}/man8
 cp postgrey.8 contrib/postgreyreport.8 %{buildroot}%{_mandir}/man8
@@ -82,7 +82,7 @@ cp postgrey.8 contrib/postgreyreport.8 %{buildroot}%{_mandir}/man8
 rm -rf %{buildroot}
 
 %pre
-%_pre_useradd %{name} %{_localstatedir}/%{name} /bin/false
+%_pre_useradd %{name} %{_localstatedir}/lib/%{name} /bin/false
 
 %post
 %_post_service %{name}
@@ -106,5 +106,5 @@ rm -rf %{buildroot}
 %{_mandir}/man8/postgrey.8*
 %{_mandir}/man8/postgreyreport.8*
 %dir %attr(0750, postgrey, postfix) %{queue_directory}/extern/%{name}
-%dir %attr(0750, postgrey, postgrey) %{_localstatedir}/%{name}
+%dir %attr(0750, postgrey, postgrey) %{_localstatedir}/lib/%{name}
 
