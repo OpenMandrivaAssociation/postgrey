@@ -1,0 +1,42 @@
+diff -p -up postgrey-1.32/contrib/postgreyreport.mdk postgrey-1.32/contrib/postgreyreport
+--- postgrey-1.32/contrib/postgreyreport.mdk	2007-08-29 15:26:01.000000000 +0200
++++ postgrey-1.32/contrib/postgreyreport	2008-08-18 15:48:51.000000000 +0200
+@@ -24,7 +24,7 @@ select((select(STDOUT), $| = 1)[0]); 	# 
+ # default options, override via command line
+ my %opt = ( 	
+ 	user 			=> 'postgrey',
+-	dbdir 			=> '/var/spool/postfix/postgrey',
++	dbdir 			=> '/var/lib/postgrey',
+ 	delay			=> 300,
+ 	return_string		=> 'Greylisted',	# match on this string
+ 
+@@ -583,7 +583,7 @@ B<postgreyreport> [I<options>...]
+      --version		      display version and exit
+ 
+      --user=USER              run as USER (default: postgrey)
+-     --dbdir=PATH             find db files in PATH (default: /var/spool/postfix/postgrey)
++     --dbdir=PATH             find db files in PATH (default: /var/lib/postgrey)
+      --delay=N                report triplets that did not try again after N seconds (default: 300)
+      --greylist-text=TXT      text to match on for greylist maillog lines
+ 
+diff -p -up postgrey-1.32/postgrey.mdk postgrey-1.32/postgrey
+--- postgrey-1.32/postgrey.mdk	2008-07-22 22:27:32.000000000 +0200
++++ postgrey-1.32/postgrey	2008-08-18 15:48:51.000000000 +0200
+@@ -23,7 +23,7 @@ use vars qw(@ISA);
+ @ISA = qw(Net::Server::Multiplex);
+ 
+ my $VERSION = '1.32';
+-my $DEFAULT_DBDIR = '/var/spool/postfix/postgrey';
++my $DEFAULT_DBDIR = '/var/lib/postgrey';
+ my $CONFIG_DIR = '/etc/postfix';
+ 
+ sub cidr_parse($)
+@@ -575,7 +575,7 @@ sub main()
+             port             => [ $opt{inet} ? $opt{inet} : $opt{unix}."|unix" ],
+             proto            => $opt{inet} ? 'tcp' : 'unix',
+             user             => $opt{user} || 'postgrey',
+-            group            => $opt{group} || 'nogroup',
++            group            => $opt{group} || 'postgrey',
+             dbdir            => $opt{dbdir} || $DEFAULT_DBDIR,
+             setsid           => $opt{daemonize} ? 1 : undef,
+             pid_file         => $opt{daemonize} ? $opt{pidfile} : undef,
