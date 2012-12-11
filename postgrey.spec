@@ -108,3 +108,75 @@ rm -rf %{buildroot}
 %dir %attr(0750, postgrey, postfix) %{queue_directory}/extern/%{name}
 %dir %attr(0750, postgrey, postgrey) %{_localstatedir}/lib/%{name}
 
+
+
+%changelog
+* Fri Sep 04 2009 Thierry Vignaud <tvignaud@mandriva.com> 1.32-5mdv2010.0
++ Revision: 430768
+- rebuild
+
+* Mon Aug 18 2008 Luca Berra <bluca@mandriva.org> 1.32-4mdv2009.0
++ Revision: 273256
+- updated to 1.32
+- make postgrey.init prcsys conform (#39833)
+
+* Fri Aug 01 2008 Thierry Vignaud <tvignaud@mandriva.com> 1.31-4mdv2009.0
++ Revision: 259241
+- rebuild
+
+* Thu Jul 24 2008 Thierry Vignaud <tvignaud@mandriva.com> 1.31-3mdv2009.0
++ Revision: 247150
+- rebuild
+
+  + Pixel <pixel@mandriva.com>
+    - adapt to %%_localstatedir now being /var instead of /var/lib (#22312)
+
+* Sat Mar 01 2008 Michael Scherer <misc@mandriva.org> 1.31-1mdv2008.1
++ Revision: 177191
+- update to 1.31
+- rediff patch
+- update url
+
+* Wed Jan 02 2008 Olivier Blin <oblin@mandriva.com> 1.27-2mdv2008.1
++ Revision: 140735
+- restore BuildRoot
+
+  + Thierry Vignaud <tvignaud@mandriva.com>
+    - kill re-definition of %%buildroot on Pixel's request
+
+
+* Sun Sep 03 2006 Luca Berra <bluca@comedia.it>
++ 2006-09-03 08:34:42 (59660)
+Added some requires to fix/workaround #25086
+
+* Sun Jul 30 2006 Luca Berra <bluca@comedia.it>
++ 2006-07-30 13:06:59 (42810)
+New release 1.27
+Remove redefinition of mkrel macro
+
+* Sun Jul 30 2006 Luca Berra <bluca@comedia.it>
++ 2006-07-30 11:53:34 (42808)
+import postgrey-1.26-1mdv2007.0
+
+* Fri Jul 14 2006 Oden Eriksson <oeriksson@mandriva.com> 1.26-1mdv2007.0
+- 1.26 (Minor feature enhancements)
+
+* Mon May 29 2006 Emmanuel Andry <eandry@mandriva.org> 1.24-1mdk
+- New release 1.24
+
+* Tue Dec 27 2005 Michael Scherer <misc@mandriva.org> 1.23-1mdk
+- New release 1.23
+
+* Mon Oct 17 2005 Oden Eriksson <oeriksson@mandriva.com> 1.21-1mdk
+- fix #19292
+- rpmlint fixes
+
+* Tue Mar 08 2005 Oden Eriksson <oeriksson@mandrakesoft.com> 1.18-2mdk
+- revert to the package by Luca Berra (sorry)
+
+* Tue Mar 08 2005 Oden Eriksson <oeriksson@mandrakesoft.com> 1.18-1mdk
+- mistake
+
+* Mon Jan 03 2005 Luca Berra <bluca@vodka.it> 1.17-1mdk
+- Initial release based on redhat package from Levente Farkas
+

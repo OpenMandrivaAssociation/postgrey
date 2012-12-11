@@ -1,0 +1,102 @@
+#!/bin/sh
+# postgrey        Script to start/stop/restart postgrey.
+#
+# chkconfig: 2345 79 31
+# description: Postfix Greylisting Policy Server
+#
+# processname: postgrey
+# pidfile: /var/run/greylist.pid
+#
+
+### BEGIN INIT INFO
+# Provides: postgrey
+# Required-Start: $network
+# Required-Stop: $network
+# Default-Start: 2 3 4 5
+# Short-Description: Starts the postfix Greylisting Policy Server
+# Description: Postfix Greylisting Policy Server
+### END INIT INFO
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 0
+
+prog=postgrey
+DBPATH=/var/lib/postgrey
+SOCKET=$(postconf -h queue_directory)/extern/postgrey/socket
+OPTIONS="--unix=$SOCKET"
+
+# Source an auxiliary options file if we have one.
+if [ -r /etc/sysconfig/$prog ] ; then
+        . /etc/sysconfig/$prog
+fi
+
+[ -x /usr/sbin/$prog ] || exit 0
+[ -d $DBPATH ] || exit 0
+#[ -f /etc/postfix/postgrey_whitelist_clients ] || exit 0
+#[ -f /etc/postfix/postgrey_whitelist_recipients ] || exit 0
+
+RETVAL=0
+
+start() {
+        echo -n "Starting $prog:"
+        daemon $prog -d $OPTIONS
+        RETVAL=$?
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/$prog
+        echo
+	return $RETVAL
+}
+
+stop() {
+        echo -n "Stopping $prog:"
+        killproc $prog
+        RETVAL=$?
+        [ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/$prog
+        echo
+        return $RETVAL
+}
+
+restart() {
+	stop
+	start
+}
+
+reload() {
+        echo -n "Reloading $prog:"
+        killproc $prog -HUP
+        RETVAL=$?
+        echo
+        return $RETVAL
+}
+
+# See how we were called.
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  restart)
+	restart
+	;;
+  reload)
+	reload
+	;;
+  status)
+        status $prog
+	;;
+  condrestart)
+	[ -f /var/lock/subsys/$prog ] && restart || :
+	;;
+  *)
+	echo "Usage: $prog {start|stop|restart|reload|status|condrestart}"
+	exit 1
+esac
+
+exit $?

@@ -1,4 +1,2 @@
 sources:
-  "postgrey-1.32.tar.gz:"	7b7df189677fc16e7596fc57231ed65dbdde6414
-  "postgrey.init:"	252b77b8f6ffc133bd69c74587ae28a130d6a76f
-  "postgrey.sysconfig:"	3112cc01df4c8d86b2ba486a9409ac0ee59a2197
+  "postgrey-1.32.tar.gz": 7b7df189677fc16e7596fc57231ed65dbdde6414
