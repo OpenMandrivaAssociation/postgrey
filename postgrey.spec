@@ -4,7 +4,7 @@ Version: 	1.32
 Release:	6
 License: 	GPL
 Group: 		System/Servers
-URL:		http://postgrey.schweikert.ch/
+URL:		https://postgrey.schweikert.ch/
 Source: 	http://postgrey.schweikert.ch/pub/%{name}-%{version}.tar.gz
 Source1:	%{name}.init
 Source2:	%{name}.sysconfig
